@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nizam & Nihala – Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #f5ede6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Falling petals */
+    .petals-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      background: #fffdf9;
+      width: 100%;
+      max-width: 480px;
+      margin: 24px auto;
+      border-radius: 18px;
+      box-shadow: 0 8px 48px rgba(180,100,80,0.10), 0 2px 8px rgba(0,0,0,0.06);
+      padding: 0 0 36px 0;
+      overflow: hidden;
+    }
+
+    /* Header floral banner */
+    .card-header {
+      background: linear-gradient(135deg, #3d6b4f 0%, #2e5040 100%);
+      padding: 32px 24px 22px;
+      text-align: center;
+      position: relative;
+    }
+
+    .card-header::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 28px solid transparent;
+      border-right: 28px solid transparent;
+      border-top: 15px solid #2e5040;
+    }
+
+    .monogram {
+      font-family: 'Great Vibes', cursive;
+      font-size: 54px;
+      color: #fff;
+      letter-spacing: 2px;
+      line-height: 1.1;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+
+    .bismi {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.78);
+      letter-spacing: 0.5px;
+      margin-top: 6px;
+    }
+
+    /* Body */
+    .card-body {
+      padding: 38px 28px 0;
+      text-align: center;
+    }
+
+    .together-label {
+      font-size: 9px;
+      letter-spacing: 3.5px;
+      color: #a08070;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 12px auto;
+      max-width: 260px;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #c9a090);
+    }
+    .divider-dot {
+      width: 5px; height: 5px;
+      background: #c9a090;
+      border-radius: 50%;
+    }
+
+    /* Name section */
+    .groom-section, .bride-section {
+      margin: 6px 0;
+    }
+    .person-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: #2c2218;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+    .parent-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #7a5c4a;
+      line-height: 1.7;
+      margin-top: 2px;
+    }
+
+    .weds-heart {
+      font-size: 20px;
+      color: #c9786a;
+      margin: 10px 0 4px;
+      display: block;
+    }
+    .weds-text {
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      color: #3d6b4f;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Honour text */
+    .honour-text {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #a08070;
+      text-transform: uppercase;
+      margin: 18px 0 14px;
+    }
+
+    /* Date/time/venue card */
+    .info-row {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      border: 1px solid #e8d5c8;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 0 4px 18px;
+    }
+    .info-cell {
+      flex: 1;
+      padding: 14px 10px;
+      text-align: center;
+      position: relative;
+    }
+    .info-cell + .info-cell::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 18%; height: 64%;
+      width: 1px;
+      background: #e8d5c8;
+    }
+    .info-cell-label {
+      font-size: 8.5px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #a08070;
+      margin-bottom: 4px;
+    }
+    .info-cell-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: #3d6b4f;
+      line-height: 1;
+    }
+    .info-cell-sub {
+      font-size: 9px;
+      color: #a08070;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Hijri date */
+    .hijri-badge {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      color: #9a7060;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+
+    /* Venue */
+    .venue-block {
+      margin: 4px 0 18px;
+    }
+    .venue-name {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      color: #2c2218;
+      text-transform: uppercase;
+    }
+    .venue-sub {
+      font-size: 11.5px;
+      color: #9a7060;
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+    .venue-icon {
+      color: #c9786a;
+      font-size: 13px;
+      margin-right: 3px;
+    }
+
+    /* Reception badge */
+    .reception-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #3d6b4f, #2e5040);
+      color: #fff;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-radius: 30px;
+      padding: 5px 18px;
+      margin-bottom: 16px;
+    }
+
+    /* Countdown */
+    .section-label {
+      font-size: 8.5px;
+      letter-spacing: 3px;
+      color: #a08070;
+      text-transform: uppercase;
+      margin: 10px 0 12px;
+    }
+
+    .countdown-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .countdown-box {
+      background: linear-gradient(135deg, #f9f1ea, #f0e4d8);
+      border: 1px solid #e8d5c8;
+      border-radius: 10px;
+      padding: 12px 10px 8px;
+      min-width: 64px;
+      text-align: center;
+    }
+    .countdown-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: #3d6b4f;
+      line-height: 1;
+      display: block;
+    }
+    .countdown-unit {
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: #a08070;
+      text-transform: uppercase;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Action buttons */
+    .action-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 8px 16px 0;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 20px;
+      border-radius: 40px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.13); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-calendar {
+      background: linear-gradient(135deg, #3d6b4f, #2e5040);
+      color: #fff;
+    }
+    .btn-directions {
+      background: #fff;
+      color: #3d6b4f;
+      border: 1.5px solid #3d6b4f;
+    }
+
+    /* Footer ornament */
+    .footer-ornament {
+      text-align: center;
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid #e8d5c8;
+      font-family: 'Great Vibes', cursive;
+      font-size: 22px;
+      color: #c9a090;
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      .card { margin: 0; border-radius: 0; min-height: 100vh; }
+      .person-name { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Petals canvas -->
+<canvas class="petals-canvas" id="petalsCanvas"></canvas>
+
+<div class="card">
+
+  <!-- Header -->
+  <div class="card-header">
+    <div class="monogram">N &amp; N</div>
+    <p class="bismi">In the name of Allah, the Most Gracious, the Most Merciful</p>
+  </div>
+
+  <!-- Body -->
+  <div class="card-body">
+
+    <p class="together-label" style="margin-top:28px;">Together with their families</p>
+
+    <div class="divider"><div class="divider-dot"></div></div>
+
+    <!-- Groom -->
+    <div class="groom-section">
+      <div class="person-name">Nizam Nazar</div>
+      <div class="parent-line">
+        S/o Mr. Nazar &amp;<br>Mrs. Naseeba
+      </div>
+    </div>
+
+    <!-- Weds -->
+    <span class="weds-heart">♡</span>
+    <span class="weds-text">Weds</span>
+    <span class="weds-heart">♡</span>
+
+    <!-- Bride -->
+    <div class="bride-section">
+      <div class="person-name">Nihala Shakeer</div>
+      <div class="parent-line">
+        D/o Mr. Shakeer &amp;<br>Mrs. Fayiza
+      </div>
+    </div>
+
+    <div class="divider" style="margin-top:18px;"><div class="divider-dot"></div></div>
+
+    <p class="honour-text">Request the honour of your presence</p>
+
+    <!-- Reception badge -->
+    <div class="reception-badge">🕌 Reception Invitation</div>
+
+    <!-- Date / Day / Time row -->
+    <div class="info-row">
+      <div class="info-cell">
+        <div class="info-cell-label">Month</div>
+        <div class="info-cell-value" style="font-size:16px;padding-top:6px;">JULY</div>
+        <div class="info-cell-sub">2026, Monday</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Day</div>
+        <div class="info-cell-value">13</div>
+        <div class="info-cell-sub">&nbsp;</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Time</div>
+        <div class="info-cell-value" style="font-size:20px;padding-top:4px;">12:30</div>
+        <div class="info-cell-sub">PM</div>
+      </div>
+    </div>
+
+    <!-- Venue -->
+    <div class="venue-block">
+      <div class="venue-name">Mattool Centre</div>
+      <div class="venue-sub">
+        <span class="venue-icon">📍</span>Cheshire village, Mattool<br>Kannur, Kerala
+      </div>
+    </div>
+
+    <div class="divider"><div class="divider-dot"></div></div>
+
+    <!-- Countdown -->
+    <p class="section-label" style="margin-top:18px;">Wedding Countdown</p>
+    <div class="countdown-row">
+      <div class="countdown-box">
+        <span class="countdown-num" id="cd-days">--</span>
+        <span class="countdown-unit">Days</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-num" id="cd-hours">--</span>
+        <span class="countdown-unit">Hours</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-num" id="cd-mins">--</span>
+        <span class="countdown-unit">Mins</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-num" id="cd-secs">--</span>
+        <span class="countdown-unit">Secs</span>
+      </div>
+    </div>
+
+    <div class="divider"><div class="divider-dot"></div></div>
+
+    <!-- Action buttons -->
+    <div class="action-btns" style="margin-top:18px;">
+      <button class="btn btn-calendar" onclick="addToCalendar()">
+        📅 Add to Calendar
+      </button>
+      <a class="btn btn-directions" href="https://maps.app.goo.gl/eVtny54AQ3MwWky99" target="_blank" rel="noopener">
+        🗺️ Get Directions
+      </a>
+    </div>
+
+    <!-- Footer ornament -->
+    <div class="footer-ornament">
+      Nizam &amp; Nihala
+    </div>
+
+  </div>
+</div>
+
+<script>
+  /* ── Countdown ── */
+  const weddingDate = new Date('2026-07-13T12:30:00');
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = weddingDate - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent  = '0';
+      document.getElementById('cd-hours').textContent = '0';
+      document.getElementById('cd-mins').textContent  = '0';
+      document.getElementById('cd-secs').textContent  = '0';
+      return;
+    }
+    const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs  = Math.floor((diff % (1000 * 60)) / 1000);
+    document.getElementById('cd-days').textContent  = days;
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  /* ── Add to Calendar ── */
+  function addToCalendar() {
+    const start  = '20260713T123000';
+    const end    = '20260713T160000';
+    const title  = encodeURIComponent('Wedding Reception – Nizam Nazar & Nihala Shakeer');
+    const details= encodeURIComponent('Wedding Reception of Nizam Nazar & Nihala Shakeer. Time: 12:30 PM');
+    const location = encodeURIComponent('Mattool Centre, Cheshire village, Mattool, Kannur, Kerala');
+
+    // Google Calendar
+    const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}`;
+
+    // ICS fallback for Apple/Outlook
+    const icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'BEGIN:VEVENT',
+      `DTSTART:${start}`,
+      `DTEND:${end}`,
+      `SUMMARY:Wedding Reception – Nizam Nazar & Nihala Shakeer`,
+      `DESCRIPTION:Wedding Reception of Nizam Nazar & Nihala Shakeer`,
+      `LOCATION:Mattool Centre, Cheshire village, Mattool, Kannur, Kerala`,
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    // Show a small picker
+    const existing = document.getElementById('cal-picker');
+    if (existing) { existing.remove(); return; }
+
+    const picker = document.createElement('div');
+    picker.id = 'cal-picker';
+    Object.assign(picker.style, {
+      position: 'fixed', bottom: '100px', left: '50%',
+      transform: 'translateX(-50%)',
+      background: '#fff', borderRadius: '14px',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
+      padding: '18px 22px', zIndex: '999',
+      display: 'flex', flexDirection: 'column', gap: '10px',
+      minWidth: '230px', textAlign: 'center'
+    });
+
+    picker.innerHTML = `
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#a08070;margin-bottom:4px;">Add to Calendar</div>
+      <a href="${gcalUrl}" target="_blank" rel="noopener"
+         style="display:block;padding:10px 16px;background:#3d6b4f;color:#fff;border-radius:30px;font-size:12px;font-weight:600;letter-spacing:1px;text-decoration:none;">
+        📅 Google Calendar
+      </a>
+      <a href="#" id="ics-dl"
+         style="display:block;padding:10px 16px;background:#f0e4d8;color:#3d6b4f;border-radius:30px;font-size:12px;font-weight:600;letter-spacing:1px;text-decoration:none;">
+        🍎 Apple / Outlook (.ics)
+      </a>
+      <span style="font-size:10px;color:#bbb;cursor:pointer;" onclick="this.parentElement.remove()">✕ Close</span>
+    `;
+
+    document.body.appendChild(picker);
+
+    picker.querySelector('#ics-dl').addEventListener('click', function(e){
+      e.preventDefault();
+      const blob = new Blob([icsContent], { type: 'text/calendar' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url; a.download = 'nizam-nihala-wedding.ics';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Auto-close after 8s
+    setTimeout(() => { if (picker.parentElement) picker.remove(); }, 8000);
+  }
+
+  /* ── Falling Petals ── */
+  const canvas = document.getElementById('petalsCanvas');
+  const ctx    = canvas.getContext('2d');
+  let petals   = [];
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const COLORS = [
+    'rgba(220,160,150,0.65)',
+    'rgba(230,190,170,0.55)',
+    'rgba(200,140,130,0.50)',
+    'rgba(240,200,185,0.45)',
+    'rgba(180,220,170,0.35)',
+  ];
+
+  function createPetal() {
+    return {
+      x: Math.random() * canvas.width,
+      y: -18,
+      r: 5 + Math.random() * 7,
+      rx: 2 + Math.random() * 3,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      speed: 0.8 + Math.random() * 1.4,
+      drift: (Math.random() - 0.5) * 0.6,
+      rot: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.04,
+      swing: Math.random() * Math.PI * 2,
+      swingSpeed: 0.01 + Math.random() * 0.02,
+    };
+  }
+
+  for (let i = 0; i < 22; i++) {
+    const p = createPetal();
+    p.y = Math.random() * window.innerHeight;
+    petals.push(p);
+  }
+
+  function animPetals() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (petals.length < 28 && Math.random() < 0.04) petals.push(createPetal());
+
+    petals.forEach((p, i) => {
+      p.swing += p.swingSpeed;
+      p.x    += Math.sin(p.swing) * 0.6 + p.drift;
+      p.y    += p.speed;
+      p.rot  += p.rotSpeed;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.rx, p.r, 0, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      ctx.restore();
+
+      if (p.y > canvas.height + 20) petals[i] = createPetal();
+    });
+    requestAnimationFrame(animPetals);
+  }
+  animPetals();
+</script>
+</body>
+</html>
