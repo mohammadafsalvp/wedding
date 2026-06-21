@@ -73,13 +73,22 @@
       text-shadow: 0 2px 12px rgba(0,0,0,0.18);
     }
 
-    .bismi {
+    .bismi-arabic {
+      font-size: 20px;
+      color: rgba(255,255,255,0.90);
+      letter-spacing: 1px;
+      margin-top: 8px;
+      font-family: serif;
+      direction: rtl;
+    }
+
+    .bismi-english {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 11.5px;
-      color: rgba(255,255,255,0.78);
+      color: rgba(255,255,255,0.72);
       letter-spacing: 0.5px;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     /* Body */
@@ -88,19 +97,23 @@
       text-align: center;
     }
 
-    .together-label {
-      font-size: 9px;
-      letter-spacing: 3.5px;
-      color: #a08070;
-      text-transform: uppercase;
-      margin-bottom: 18px;
+    .invite-preamble {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      color: #7a5c4a;
+      line-height: 1.8;
+      margin-bottom: 4px;
+    }
+    .invite-preamble strong {
+      font-weight: 600;
+      color: #2c2218;
     }
 
     .divider {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 12px auto;
+      margin: 14px auto;
       max-width: 260px;
     }
     .divider::before, .divider::after {
@@ -121,11 +134,19 @@
     }
     .person-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 30px;
+      font-size: 52px;
       font-weight: 600;
       color: #2c2218;
-      letter-spacing: 0.5px;
-      line-height: 1.2;
+      letter-spacing: 6px;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+    .weds-italic {
+      font-family: 'Great Vibes', cursive;
+      font-size: 30px;
+      color: #3d6b4f;
+      display: block;
+      margin: 4px 0;
     }
     .parent-line {
       font-family: 'Cormorant Garamond', serif;
@@ -133,120 +154,108 @@
       font-weight: 400;
       color: #7a5c4a;
       line-height: 1.7;
-      margin-top: 2px;
+      margin-top: 4px;
     }
-
-    .weds-heart {
-      font-size: 20px;
-      color: #c9786a;
-      margin: 10px 0 4px;
-      display: block;
-    }
-    .weds-text {
-      font-family: 'Great Vibes', cursive;
-      font-size: 28px;
-      color: #3d6b4f;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    /* Honour text */
-    .honour-text {
-      font-size: 9px;
-      letter-spacing: 3px;
-      color: #a08070;
-      text-transform: uppercase;
-      margin: 18px 0 14px;
-    }
-
-    /* Date/time/venue card */
-    .info-row {
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      border: 1px solid #e8d5c8;
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 0 4px 18px;
-    }
-    .info-cell {
-      flex: 1;
-      padding: 14px 10px;
-      text-align: center;
-      position: relative;
-    }
-    .info-cell + .info-cell::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 18%; height: 64%;
-      width: 1px;
-      background: #e8d5c8;
-    }
-    .info-cell-label {
-      font-size: 8.5px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: #a08070;
-      margin-bottom: 4px;
-    }
-    .info-cell-value {
+    .parent-label {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 30px;
-      font-weight: 600;
+      font-size: 13px;
+      font-style: italic;
+      color: #9a7060;
+      margin-top: 10px;
+    }
+
+    /* ── Event Section Headings ── */
+    .event-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 24px auto 16px;
+      max-width: 320px;
+    }
+    .event-heading::before, .event-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #c9a090;
+    }
+    .event-heading-text {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
       color: #3d6b4f;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* ── Nikah / Reception info cards ── */
+    .event-card {
+      background: #fdf8f4;
+      border: 1px solid #e8d5c8;
+      border-radius: 14px;
+      padding: 18px 20px 16px;
+      margin: 0 4px 10px;
+    }
+
+    .event-details-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .event-detail-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .event-detail-icon {
+      font-size: 18px;
       line-height: 1;
     }
-    .info-cell-sub {
-      font-size: 9px;
+    .event-detail-label {
+      font-size: 8.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       color: #a08070;
-      margin-top: 3px;
-      letter-spacing: 0.5px;
+    }
+    .event-detail-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #2c2218;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .event-detail-sub {
+      font-size: 10px;
+      color: #9a7060;
+      text-align: center;
     }
 
-    /* Hijri date */
-    .hijri-badge {
+    /* Venue block for reception */
+    .reception-venue {
+      text-align: center;
+      margin-top: 4px;
+    }
+    .reception-venue-name {
       font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #2c2218;
+      letter-spacing: 1px;
+    }
+    .reception-venue-sub {
       font-size: 12px;
       color: #9a7060;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-      font-style: italic;
-    }
-
-    /* Venue */
-    .venue-block {
-      margin: 4px 0 18px;
-    }
-    .venue-name {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 2.5px;
-      color: #2c2218;
-      text-transform: uppercase;
-    }
-    .venue-sub {
-      font-size: 11.5px;
-      color: #9a7060;
       margin-top: 3px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
-    .venue-icon {
-      color: #c9786a;
-      font-size: 13px;
+    .pin-icon {
+      color: #3d6b4f;
+      font-size: 15px;
       margin-right: 3px;
-    }
-
-    /* Reception badge */
-    .reception-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #3d6b4f, #2e5040);
-      color: #fff;
-      font-size: 9px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      border-radius: 30px;
-      padding: 5px 18px;
-      margin-bottom: 16px;
     }
 
     /* Countdown */
@@ -325,6 +334,37 @@
       color: #3d6b4f;
       border: 1.5px solid #3d6b4f;
     }
+    .btn-nikah-directions {
+      background: #fff;
+      color: #6b4e3d;
+      border: 1.5px solid #c9a090;
+    }
+
+    /* Blessing text */
+    .blessing-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      color: #7a5c4a;
+      line-height: 1.9;
+      margin: 6px 0 4px;
+      padding: 0 8px;
+    }
+    .blessing-italic {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: #9a7060;
+      line-height: 1.8;
+      padding: 0 8px;
+    }
+    .arabic-dua {
+      font-size: 17px;
+      color: #3d6b4f;
+      direction: rtl;
+      font-family: serif;
+      margin-top: 14px;
+      line-height: 2;
+    }
 
     /* Footer ornament */
     .footer-ornament {
@@ -340,7 +380,7 @@
     /* Responsive */
     @media (max-width: 500px) {
       .card { margin: 0; border-radius: 0; min-height: 100vh; }
-      .person-name { font-size: 26px; }
+      .person-name { font-size: 40px; }
     }
   </style>
 </head>
@@ -354,72 +394,81 @@
   <!-- Header -->
   <div class="card-header">
     <div class="monogram">N &amp; N</div>
-    <p class="bismi">In the name of Allah, the Most Gracious, the Most Merciful</p>
+    <div class="bismi-arabic">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+    <p class="bismi-english">In the name of Allah, the Most Gracious, the Most Merciful</p>
   </div>
 
   <!-- Body -->
   <div class="card-body">
 
-    <p class="together-label" style="margin-top:28px;">Together with their families</p>
+    <!-- Preamble -->
+    <p class="invite-preamble" style="margin-top:28px;">
+      With the blessings of Almighty Allah,<br>
+      <strong>Mr. Nazar &amp; Mrs. Naseeba</strong><br>
+      cordially invite you to the Nikah of<br>
+      their beloved son
+    </p>
 
-    <div class="divider"><div class="divider-dot"></div></div>
-
-    <!-- Groom -->
-    <div class="groom-section">
+    <!-- Groom Name -->
+    <div class="groom-section" style="margin-top:12px;">
       <div class="person-name">Nizam</div>
-      <div class="parent-line">
-        S/o Mr. Nazar &amp;<br>Mrs. Naseeba
-      </div>
     </div>
 
-    <!-- Weds -->
-    <span class="weds-heart">♡</span>
-    <span class="weds-text">Weds</span>
-    <span class="weds-heart">♡</span>
+    <span class="weds-italic">with</span>
 
-    <!-- Bride -->
+    <!-- Bride Name -->
     <div class="bride-section">
       <div class="person-name">Nihala</div>
-      <div class="parent-line">
-        D/o Mr. Shakeer &amp;<br>Mrs. Fayiza
+    </div>
+
+    <p class="parent-label">Beloved daughter of</p>
+    <p class="parent-line">Mr. Shakeer &amp; Mrs. Fayiza</p>
+
+    <!-- ══ NIKAH SECTION ══ -->
+    <div class="event-heading">
+      <span class="event-heading-text">Nikah</span>
+    </div>
+
+    <div class="event-card">
+      <div class="event-details-row">
+        <div class="event-detail-item">
+          <span class="event-detail-icon pin-icon">📍</span>
+          <span class="event-detail-label">Venue</span>
+          <span class="event-detail-value">Srambi Masjid<br>Siddiqpalli</span>
+        </div>
+        <div class="event-detail-item">
+          <span class="event-detail-icon">📅</span>
+          <span class="event-detail-label">Date</span>
+          <span class="event-detail-value">July 13th, Sunday</span>
+          <span class="event-detail-sub">2026</span>
+        </div>
+        <div class="event-detail-item">
+          <span class="event-detail-icon">🕙</span>
+          <span class="event-detail-label">Time</span>
+          <span class="event-detail-value">10:00 AM</span>
+        </div>
       </div>
     </div>
 
-    <div class="divider" style="margin-top:18px;"><div class="divider-dot"></div></div>
+    <!-- ══ RECEPTION SECTION ══ -->
+    <div class="event-heading">
+      <span class="event-heading-text">Reception</span>
+    </div>
 
-    <p class="honour-text">Request the honour of your presence</p>
-
-    <!-- Reception badge -->
-    <div class="reception-badge">🕌 Reception Invitation</div>
-
-    <!-- Date / Day / Time row -->
-    <div class="info-row">
-      <div class="info-cell">
-        <div class="info-cell-label">Month</div>
-        <div class="info-cell-value" style="font-size:16px;padding-top:6px;">JULY</div>
-        <div class="info-cell-sub">2026, Monday</div>
-      </div>
-      <div class="info-cell">
-        <div class="info-cell-label">Day</div>
-        <div class="info-cell-value">13</div>
-        <div class="info-cell-sub">&nbsp;</div>
-      </div>
-      <div class="info-cell">
-        <div class="info-cell-label">Time</div>
-        <div class="info-cell-value" style="font-size:20px;padding-top:4px;">12:30</div>
-        <div class="info-cell-sub">PM</div>
+    <div class="event-card">
+      <div class="reception-venue">
+        <span class="pin-icon">📍</span>
+        <span class="reception-venue-name">Mattool Centre</span>
+        <div class="reception-venue-sub">Cheshire Village, Mattool<br>Kannur, Kerala</div>
       </div>
     </div>
 
-    <!-- Venue -->
-    <div class="venue-block">
-      <div class="venue-name">Mattool Centre</div>
-      <div class="venue-sub">
-        <span class="venue-icon">📍</span>Cheshire village, Mattool<br>Kannur, Kerala
-      </div>
-    </div>
+    <!-- Reception directions -->
+    <a class="btn btn-directions" href="https://maps.app.goo.gl/eVtny54AQ3MwWky99" target="_blank" rel="noopener" style="margin: 0 16px 8px; display:flex;">
+      🗺️ Directions to Reception
+    </a>
 
-    <div class="divider"><div class="divider-dot"></div></div>
+    <div class="divider" style="margin-top:20px;"><div class="divider-dot"></div></div>
 
     <!-- Countdown -->
     <p class="section-label" style="margin-top:18px;">Wedding Countdown</p>
@@ -449,9 +498,17 @@
       <button class="btn btn-calendar" onclick="addToCalendar()">
         📅 Add to Calendar
       </button>
-      <a class="btn btn-directions" href="https://maps.app.goo.gl/eVtny54AQ3MwWky99" target="_blank" rel="noopener">
-        🗺️ Get Directions
-      </a>
+    </div>
+
+    <!-- Blessing texts -->
+    <div style="margin-top:22px; padding: 0 4px;">
+      <p class="blessing-text">
+        Your presence and blessings<br>will make our celebration complete.
+      </p>
+      <p class="blessing-italic" style="margin-top:10px;">
+        "May Allah bless this marriage<br>and grant the couple a life filled<br>with love, mercy, and happiness."
+      </p>
+      <p class="arabic-dua">بارك الله لكما وبارك عليكما وجمع بينكما في خير</p>
     </div>
 
     <!-- Footer ornament -->
@@ -463,8 +520,8 @@
 </div>
 
 <script>
-  /* ── Countdown ── */
-  const weddingDate = new Date('2026-07-13T12:30:00');
+  /* ── Countdown (to Nikah at 10 AM) ── */
+  const weddingDate = new Date('2026-07-13T10:00:00');
 
   function updateCountdown() {
     const now = new Date();
@@ -490,11 +547,11 @@
 
   /* ── Add to Calendar ── */
   function addToCalendar() {
-    const start  = '20260713T123000';
+    const start  = '20260713T100000';
     const end    = '20260713T160000';
-    const title  = encodeURIComponent('Wedding Reception – Nizam & Nihala');
-    const details= encodeURIComponent('Wedding Reception of Nizam & Nihala. Time: 12:30 PM');
-    const location = encodeURIComponent('Mattool Centre, Cheshire village, Mattool, Kannur, Kerala');
+    const title  = encodeURIComponent('Nikah & Reception – Nizam & Nihala');
+    const details= encodeURIComponent('Nikah: 10:00 AM at Srambi Masjid Siddiqpalli\nReception: Mattool Centre, Cheshire Village, Mattool, Kannur, Kerala');
+    const location = encodeURIComponent('Mattool Centre, Cheshire Village, Mattool, Kannur, Kerala');
 
     // Google Calendar
     const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}`;
@@ -506,14 +563,13 @@
       'BEGIN:VEVENT',
       `DTSTART:${start}`,
       `DTEND:${end}`,
-      `SUMMARY:Wedding Reception – Nizam & Nihala`,
-      `DESCRIPTION:Wedding Reception of Nizam & Nihala`,
-      `LOCATION:Mattool Centre, Cheshire village, Mattool, Kannur, Kerala`,
+      `SUMMARY:Nikah & Reception – Nizam & Nihala`,
+      `DESCRIPTION:Nikah: 10:00 AM at Srambi Masjid Siddiqpalli. Reception: Mattool Centre, Cheshire Village, Mattool, Kannur, Kerala`,
+      `LOCATION:Mattool Centre, Cheshire Village, Mattool, Kannur, Kerala`,
       'END:VEVENT',
       'END:VCALENDAR'
     ].join('\r\n');
 
-    // Show a small picker
     const existing = document.getElementById('cal-picker');
     if (existing) { existing.remove(); return; }
 
@@ -554,7 +610,6 @@
       URL.revokeObjectURL(url);
     });
 
-    // Auto-close after 8s
     setTimeout(() => { if (picker.parentElement) picker.remove(); }, 8000);
   }
 
